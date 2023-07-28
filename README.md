@@ -18,12 +18,12 @@ This code is suitable for calculating the evolution of gas density, temperature,
 - Non-statonary radiative transfer (diffusive approximation) + thermal balance
   - Heating by external sources
   - Opacity model for a mixture of graphite and silicate dust particles
-- External heating sources: the star, interstellar radiation, and accretion
+- External heating sources: star, interstellar radiation, and accretion
 - Convection in MLT approximation
   - Canuto flux model
   - Hansen & Kawaler flux model
 - Turbulence transfer (Reynolds stress tensor approach)
-  - Simplified dissipation model
+  - Simplified dissipation model (eps~K/tau)
   - Full dissipation model - _not yet_
 
 
@@ -37,11 +37,18 @@ The models were ran on Python 3.7, tested on 3.9.
 
 ## Code
 
-- `dry_*.py` -- no convection, no turbulence
-- `conv_*.py` -- convection, no turbulence
-- `turb_*.py` -- convection and turbulence
+The `cologne/` directory contains the engine [Cologne](https://github.com/evgenykurbatov/cologne).
 
-The hydrostatics and radiative transfer modules in the `Cologne` engine are remake of the original code by Ya. N. Pavlyuchenkov (originally in Fortran).
+Each model is represented by a directory `MODEL/` and a script `MODEL.py`. The model parameters are read from `MODEL/params.py`.
+
+Models:
+- `dry_*.py` -- no convection, no turbulence
+- `conv_*.py` -- just convection, no turbulence
+- `turb_*.py` -- both convection and turbulence
+
+In the models with the '_plus' suffix, the surface density of the column is increased by four times.
+
+The hydrostatics and radiative transfer modules in the `Cologne` engine are remake of the code by Ya. N. Pavlyuchenkov (originally in Fortran).
 
 
 ## Publications
